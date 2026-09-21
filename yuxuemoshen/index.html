@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>狱血魔神-热血玄幻小说与同人作品资源站</title>
+    <meta name="description" content="狱血魔神专题站，提供《狱血魔神》小说原著阅读、同人漫画创作、角色图鉴及剧情深度解析，涵盖热血战斗、异界穿越等精彩内容。">
+    <meta name="keywords" content="狱血魔神,小说,漫画,同人,热血玄幻,角色图鉴,剧情解析">
+    <style>
+        :root {
+            --primary-color: #8a0303;
+            --secondary-color: #ff4500;
+            --dark-bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent-glow: rgba(255, 69, 0, 0.4);
+            --border-radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 15, 15, 0.95);
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #fff;
+            margin-left: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--dark-bg)), url('https://picsum.photos/seed/demonwar/1920/1080') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--accent-glow);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #ccc;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px solid var(--secondary-color);
+            transition: all 0.3s;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .btn:hover {
+            background: transparent;
+            box-shadow: 0 0 15px var(--secondary-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #fff;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: none;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 15px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .section-more {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Grid Layouts */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #333;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-color: var(--secondary-color);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #2a2a2a;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tag {
+            background: rgba(138, 3, 3, 0.2);
+            color: var(--secondary-color);
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 10px;
+        }
+
+        /* Character Showcase */
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .char-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .char-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            border: 3px solid #333;
+            transition: border-color 0.3s;
+            object-fit: cover;
+        }
+
+        .char-card:hover .char-avatar {
+            border-color: var(--secondary-color);
+        }
+
+        .char-name {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .char-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Character Detail / Text Content */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .info-block {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .info-block h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        .info-text p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .sidebar-box {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            position: sticky;
+            top: 90px;
+        }
+
+        .sidebar-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .sidebar-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--card-bg);
+            margin-bottom: 10px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .faq-question:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .faq-answer {
+            padding: 0 20px 15px;
+            color: var(--text-muted);
+            display: none;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            margin-top: 5px;
+            padding-top: 10px;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 40px 0 20px;
+            border-top: 1px solid #222;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 32px; }
+            .nav-menu { display: none; } /* Simplified for mobile */
+            .character-grid { grid-template-columns: repeat(2, 1fr); }
+            .info-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .character-grid { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: 1fr; }
+            .header-inner { flex-direction: column; height: auto; padding: 10px 0; }
+            nav ul { margin-top: 10px; gap: 15px; }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">狱血<span>魔神</span></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#novels">小说原著</a></li>
+                    <li><a href="#comics">同人漫画</a></li>
+                    <li><a href="#characters">角色图鉴</a></li>
+                    <li><a href="#faq">资料库</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content container">
+                <h1>探索无尽血统，重塑神魔秩序</h1>
+                <p>这里是《狱血魔神》粉丝专属社区，提供原著小说深度解读、同人漫画创作展示及角色背景资料库。</p>
+                <div>
+                    <a href="#novels" class="btn">开始阅读</a>
+                    <a href="#comics" class="btn btn-outline">浏览同人</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- 小说原著板块 -->
+            <section id="novels">
+                <div class="section-header">
+                    <h2 class="section-title">小说原著</h2>
+                    <a href="#" class="section-more">查看更多 &raquo;</a>
+                </div>
+                <div class="card-grid">
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/book1/300/400" alt="小说封面" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">第一章：觉醒</h3>
+                            <div class="card-meta">
+                                <span class="tag">热血</span>
+                                <span>更新中</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/book2/300/400" alt="小说封面" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">第二章：血纹显现</h3>
+                            <div class="card-meta">
+                                <span class="tag">玄幻</span>
+                                <span>更新中</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/book3/300/400" alt="小说封面" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">第三章：初试锋芒</h3>
+                            <div class="card-meta">
+                                <span class="tag">战斗</span>
+                                <span>连载中</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/book4/300/400" alt="小说封面" class="card-img">
+                        <div class="card-body">
+                            <h3 class="card-title">番外：幕后黑手</h3>
+                            <div class="card-meta">
+                                <span class="tag">剧情</span>
+                                <span>已完结</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- 同人漫画板块 -->
+            <section id="comics">
+                <div class="section-header">
+                    <h2 class="section-title">同人漫画</h2>
+                    <a href="#" class="section-more">查看更多 &raquo;</a>
+                </div>
+                <div class="info-grid">
+                    <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/manga1/300/400" alt="漫画封面" class="card-img">
+                            <div class="card-body">
+                                <h3 class="card-title">魔神降临篇</h3>
+                                <div class="card-meta">
+                                    <span>作者：画魔</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/manga2/300/400" alt="漫画封面" class="card-img">
+                            <div class="card-body">
+                                <h3 class="card-title">血族起源</h3>
+                                <div class="card-meta">
+                                    <span>作者：夜行者</span>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <img src="https://picsum.photos/seed/manga3/300/400" alt="漫画封面" class="card-img">
+                            <div class="card-body">
+                                <h3 class="card-title">最终决战</h3>
+                                <div class="card-meta">
+                                    <span>作者：老铁</span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <aside>
+                        <div class="sidebar-box">
+                            <h3>热门标签</h3>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                                <span class="tag">战斗</span>
+                                <span class="tag">恋爱</span>
+                                <span class="tag">黑暗</span>
+                                <span class="tag">异能</span>
+                                <span class="tag">虐心</span>
+                            </div>
+                            <h3 style="margin-top: 20px;">近期热门</h3>
+                            <ul class="sidebar-list">
+                                <li><a href="#">第10话：血色黎明</a> <span>1.2w</span></li>
+                                <li><a href="#">第9话：深渊凝视</a> <span>9800</span></li>
+                                <li><a href="#">第8话：背叛</a> <span>8500</span></li>
+                                <li><a href="#">第7话：契约</a> <span>7200</span></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- 角色图鉴板块 -->
+            <section id="characters">
+                <div class="section-header">
+                    <h2 class="section-title">角色图鉴</h2>
+                </div>
+                <div class="character-grid">
+                    <div class="char-card">
+                        <img src="https://picsum.photos/seed/char1/200/200" alt="主角" class="char-avatar">
+                        <h3 class="char-name">叶辰</h3>
+                        <p class="char-role">主角 / 血族后裔</p>
+                    </div>
+                    <div class="char-card">
+                        <img src="https://picsum.photos/seed/char2/200/200" alt="女主角" class="char-avatar">
+                        <h3 class="char-name">苏沐橙</h3>
+                        <p class="char-role">圣殿骑士 / 挚爱</p>
+                    </div>
+                    <div class="char-card">
+                        <img src="https://picsum.photos/seed/char3/200/200" alt="反派" class="char-avatar">
+                        <h3 class="char-name">血皇</h3>
+                        <p class="char-role">血族始祖</p>
+                    </div>
+                    <div class="char-card">
+                        <img src="https://picsum.photos/seed/char4/200/200" alt="导师" class="char-avatar">
+                        <h3 class="char-name">雷烈</h3>
+                        <p class="char-role">暗影刺客</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 资料与FAQ -->
+            <section id="faq">
+                <div class="section-header">
+                    <h2 class="section-title">资料库与问答</h2>
+                </div>
+                <div class="info-grid">
+                    <div class="info-block">
+                        <h3>剧情背景解析</h3>
+                        <div class="info-text">
+                            <p>故事发生在一个被古老血族和人类联邦共同统治的世界。主角叶辰在一次意外中觉醒了沉睡千年的血族血脉，从此踏上了寻找真相与复仇的道路。随着剧情发展，他不仅要面对来自血族内部的权力斗争，还要抵御人类联邦的追捕与试探。核心冲突在于“血统的诅咒”与“人性的抉择”。</p>
+                            <p>作品通过宏大的世界观设定，探讨了力量与责任、背叛与救赎等主题。每一个角色的背后都有不为人知的过去，而叶辰的成长历程，正是从懵懂少年逐渐蜕变为能够独当一面的魔神的过程。</p>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <h3>常见问题 (FAQ)</h3>
+                        <div class="faq-item">
+                            <div class="faq-question">主角叶辰的最终结局是什么？</div>
+                            <div class="faq-answer">根据目前的连载剧情，叶辰正在经历最终篇章的洗礼，结局尚未完全揭晓，敬请期待后续章节。</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">同人作品如何投稿？</div>
+                            <div class="faq-answer">我们接受符合社区规范的原创同人漫画和小说投稿，请通过联系我们页面提交作品大纲。</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-question">小说和漫画的时间线是否一致？</div>
+                            <div class="faq-answer">两者遵循同一世界观，但在细节上略有差异，漫画侧重战斗场面的视觉表现，小说侧重心理描写。</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>关于本站</h4>
+                    <ul>
+                        <li><a href="#">网站简介</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">用户协议</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>内容分类</h4>
+                    <ul>
+                        <li><a href="#">小说连载</a></li>
+                        <li><a href="#">同人创作</a></li>
+                        <li><a href="#">角色图鉴</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>友情链接</h4>
+                    <ul>
+                        <li><a href="#">起点中文网</a></li>
+                        <li><a href="#">动漫之家</a></li>
+                        <li><a href="#">腾讯动漫</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li>邮箱：contact@yuxuemoshen.com</li>
+                        <li>QQ群：123456789</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 狱血魔神专题站 版权所有. 本站内容仅供粉丝交流学习使用，非官方网站。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <script>
+        // FAQ 交互逻辑
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.5)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+  </html>
