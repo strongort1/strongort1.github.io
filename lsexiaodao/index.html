@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="绿色小导航传送门 - 一个纯净、无广告、专注于实用工具与资源聚合的绿色上网导航站，提供常用网址直达、实用工具箱及资源聚合服务。">
+    <meta name="keywords" content="绿色小导航传送门,绿色导航,上网导航,实用工具,资源聚合,网址大全">
+    <title>绿色小导航传送门 - 纯净实用资源聚合与上网指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --primary-dark: #27ae60;
+            --primary-light: #e8f8f5;
+            --text-main: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --bg-body: #f4f6f8;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --radius: 8px;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* 头部 */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--bg-body);
+            border-radius: 20px;
+            padding: 5px 15px;
+            width: 250px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 100%;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #d5f5e3 100%);
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 快捷工具栏 */
+        .quick-tools {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--primary-color);
+            color: var(--primary-dark);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+        }
+
+        /* 内容区 */
+        main {
+            padding-bottom: 60px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .more-link {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .more-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* 网格布局 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-light);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            align-self: flex-start;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--primary-color);
+        }
+
+        /* 分类板块 */
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .category-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-header {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category-list {
+            padding: 15px;
+        }
+
+        .category-list li {
+            margin-bottom: 12px;
+        }
+
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .category-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .category-list span {
+            font-size: 0.8rem;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #666;
+        }
+
+        /* 工具箱区域 */
+        .tools-section {
+            background-color: var(--bg-card);
+            padding: 40px 0;
+            margin-bottom: 50px;
+            border-top: 1px solid #eee;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .tool-item {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: var(--radius);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tool-item:hover {
+            border-color: var(--primary-color);
+            background-color: var(--primary-light);
+        }
+
+        .tool-item-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tool-item-name {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h2 {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand p {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+            max-width: 400px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #95a5a6;
+            font-size: 0.85rem;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+
+            .nav-menu {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-brand p {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span>GO</span> 绿色小导航传送门
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">常用导航</a></li>
+                    <li><a href="#">实用工具</a></li>
+                    <li><a href="#">资源下载</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索网址、工具或资源...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>纯净导航，直达所需</h1>
+            <p>绿色小导航传送门致力于提供无广告、无弹窗的绿色上网体验。精选全网优质资源与实用工具，为您打造高效的数字生活助手。</p>
+            <div class="quick-tools">
+                <button class="tool-btn">⚡ 在线转换</button>
+                <button class="tool-btn">🛠️ 图片处理</button>
+                <button class="tool-btn">📚 知识百科</button>
+                <button class="tool-btn">🛒 优惠购物</button>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- 热门推荐 -->
+        <section class="category-section">
+            <div class="section-header">
+                <h2 class="section-title">热门推荐</h2>
+                <a href="#" class="more-link">查看全部 &rarr;</a>
+            </div>
+            <div class="grid-container">
+                <article class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-title">搜索引擎聚合</h3>
+                    <p class="card-desc">集合全网主流搜索引擎，支持全网搜索、学术搜索、图片搜索，一键直达结果。</p>
+                    <a href="#" class="card-btn">立即访问 &rarr;</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">📺</div>
+                    <h3 class="card-title">视频流媒体</h3>
+                    <p class="card-desc">精选国内外主流视频平台入口，涵盖电影、电视剧、综艺、动漫等海量资源。</p>
+                    <a href="#" class="card-btn">立即访问 &rarr;</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">📰</div>
+                    <h3 class="card-title">新闻资讯</h3>
+                    <p class="card-desc">聚合时政、财经、科技、娱乐等多维度新闻资讯，实时掌握全球动态。</p>
+                    <a href="#" class="card-btn">立即访问 &rarr;</a>
+                </article>
+                <article class="card">
+                    <div class="card-icon">💼</div>
+                    <h3 class="card-title">办公效率</h3>
+                    <p class="card-desc">提供在线文档处理、协同办公、项目管理工具，提升团队协作效率。</p>
+                    <a href="#" class="card-btn">立即访问 &rarr;</a>
+                </article>
+            </div>
+        </section>
+
+        <!-- 常用分类 -->
+        <section class="category-section">
+            <div class="section-header">
+                <h2 class="section-title">常用分类</h2>
+                <a href="#" class="more-link">浏览分类 &rarr;</a>
+            </div>
+            <div class="category-grid">
+                <div class="category-item">
+                    <div class="category-header">
+                        <span>💻 网页开发</span>
+                        <span>32个</span>
+                    </div>
+                    <ul class="category-list">
+                        <li><a href="#">前端开发框架 <span>JS</span></a></li>
+                        <li><a href="#">后端语言支持 <span>PHP</span></a></li>
+                        <li><a href="#">数据库工具 <span>SQL</span></a></li>
+                        <li><a href="#">API 接口测试 <span>API</span></a></li>
+                    </ul>
+                </div>
+                <div class="category-item">
+                    <div class="category-header">
+                        <span>🎮 游戏娱乐</span>
+                        <span>28个</span>
+                    </div>
+                    <ul class="category-list">
+                        <li><a href="#">Steam 平台 <span>PC</span></a></li>
+                        <li><a href="#">Epic 游戏商城 <span>PC</span></a></li>
+                        <li><a href="#">Switch 官网 <span>主机</span></a></li>
+                        <li><a href="#">游戏攻略社区 <span>Wiki</span></a></li>
+                    </ul>
+                </div>
+                <div class="category-item">
+                    <div class="category-header">
+                        <span>🎨 设计创意</span>
+                        <span>45个</span>
+                    </div>
+                    <ul class="category-list">
+                        <li><a href="#">在线设计工具 <span>AI</span></a></li>
+                        <li><a href="#">UI/UX 资源库 <span>PSD</span></a></li>
+                        <li><a href="#">矢量图标库 <span>SVG</span></a></li>
+                        <li><a href="#">配色方案参考 <span>Color</span></a></li>
+                    </ul>
+                </div>
+                <div class="category-item">
+                    <div class="category-header">
+                        <span>📚 学习成长</span>
+                        <span>56个</span>
+                    </div>
+                    <ul class="category-list">
+                        <li><a href="#">在线编程教程 <span>Code</span></a></li>
+                        <li><a href="#">外语学习平台 <span>Lang</span></a></li>
+                        <li><a href="#">专业知识库 <span>Wiki</span></a></li>
+                        <li><a href="#">学术文献检索 <span>Academic</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实用工具箱 -->
+        <section class="tools-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">实用工具箱</h2>
+                    <a href="#" class="more-link">全部工具 &rarr;</a>
+                </div>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <span class="tool-item-icon">📏</span>
+                        <span class="tool-item-name">单位转换器</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">🔢</span>
+                        <span class="tool-item-name">二维码生成</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">🕒</span>
+                        <span class="tool-item-name">世界时钟</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">💾</span>
+                        <span class="tool-item-name">图片压缩</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">📝</span>
+                        <span class="tool-item-name">文本去重</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">🌐</span>
+                        <span class="tool-item-name">IP 查询</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">🔒</span>
+                        <span class="tool-item-name">密码生成</span>
+                    </div>
+                    <div class="tool-item">
+                        <span class="tool-item-icon">📊</span>
+                        <span class="tool-item-name">汇率换算</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2><span>GO</span> 绿色小导航传送门</h2>
+                    <p>我们坚持绿色、纯净、实用的建站理念，拒绝商业广告干扰，为您提供最纯粹、最高效的上网导航体验。</p>
+                </div>
+                <div class="footer-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">网站地图</a></li>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">免责声明</a></li>
+                        <li><a href="#">联系方式</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>友情链接</h3>
+                    <ul>
+                        <li><a href="#">绿色软件站</a></li>
+                        <li><a href="#">开源中国</a></li>
+                        <li><a href="#">站长之家</a></li>
+                        <li><a href="#">W3C 标准</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 绿色小导航传送门 版权所有 | 仅供学习与交流使用</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+                      </html>
