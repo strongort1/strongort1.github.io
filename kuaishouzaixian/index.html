@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="快手在线看 - 提供海量高清短视频、搞笑段子、生活技巧及热门直播内容。支持电脑网页端流畅观看，包含分类导航、热门榜单及最新更新资讯。">
+    <meta name="keywords" content="快手在线看,快手视频,短视频平台,快手直播,快手搞笑,快手大全">
+    <title>快手在线看 - 高清短视频与热门直播观看平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff5000;
+            --primary-hover: #ff6a00;
+            --bg-body: #f5f5f5;
+            --bg-card: #ffffff;
+            --text-main: #333333;
+            --text-sub: #999999;
+            --border-color: #e5e5e5;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .search-bar {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 20px;
+            padding: 4px 16px;
+            width: 300px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            cursor: pointer;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            padding: 32px 0;
+            background: linear-gradient(135deg, #fff5eb 0%, #ffffff 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #2c2c2c;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: var(--text-sub);
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 80, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 80, 0, 0.05);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .stat-item strong {
+            display: block;
+            font-size: 20px;
+            color: var(--text-main);
+        }
+
+        .stat-item span {
+            font-size: 13px;
+            color: var(--text-sub);
+        }
+
+        /* 分类导航 */
+        .categories {
+            padding: 20px 0;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cat-list {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .cat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+        }
+
+        .cat-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .cat-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #fff5eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .cat-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* 主要内容区 */
+        main {
+            padding: 32px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            position: relative;
+            padding-left: 16px;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .view-all {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* 网格布局 */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-cover {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* 5:7 Aspect Ratio */
+            background-color: #eee;
+        }
+
+        .card-cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .user-avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #ddd;
+        }
+
+        /* 直播板块 */
+        .live-section {
+            margin-top: 40px;
+            background: linear-gradient(to right, #1a1a1a, #2c2c2c);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            color: white;
+        }
+
+        .live-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .live-title {
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-badge {
+            background-color: #ff5000;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        .live-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .live-card {
+            background: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .live-img {
+            position: relative;
+            width: 100%;
+            padding-top: 150%;
+        }
+
+        .live-img img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-status {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .live-info {
+            padding: 10px;
+        }
+
+        .live-name {
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* 常见问题 */
+        .faq-section {
+            margin-top: 48px;
+            padding: 40px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-md);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .faq-answer {
+            font-size: 14px;
+            color: var(--text-sub);
+            display: none; /* JS Toggle */
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-item:not(.active) .faq-question::after {
+            content: '+';
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #fff;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            margin-top: 60px;
+            color: var(--text-sub);
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .search-bar {
+                width: auto;
+                flex: 1;
+                margin: 0 16px;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .live-section {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#ff5000"/>
+                    <path d="M12 6C8.69 6 6 8.69 6 12C6 15.31 8.69 18 12 18C15.31 18 18 15.31 18 12C18 8.69 15.31 6 12 6ZM12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16Z" fill="#ff5000"/>
+                </svg>
+                <span>快手在线看</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#">热门榜单</a>
+                <a href="#">直播广场</a>
+                <a href="#">搞笑段子</a>
+                <a href="#">美食生活</a>
+                <a href="#">游戏竞技</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="搜索视频、用户或直播...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 分类导航 -->
+    <section class="categories">
+        <div class="container">
+            <ul class="cat-list">
+                <li class="cat-item">
+                    <div class="cat-icon">🔥</div>
+                    <span class="cat-name">热门推荐</span>
+                </li>
+                <li class="cat-item">
+                    <div class="cat-icon">🎵</div>
+                    <span class="cat-name">音乐MV</span>
+                </li>
+                <li class="cat-item">
+                    <div class="cat-icon">🎮</div>
+                    <span class="cat-name">游戏直播</span>
+                </li>
+                <li class="cat-item">
+                    <div class="cat-icon">🛒</div>
+                    <span class="cat-name">带货直播</span>
+                </li>
+                <li class="cat-item">
+                    <div class="cat-icon">🐱</div>
+                    <span class="cat-name">萌宠日常</span>
+                </li>
+                <li class="cat-item">
+                    <div class="cat-icon">🍳</div>
+                    <span class="cat-name">美食教程</span>
+                </li>
+                <li class="cat-item">
+                    <div class="cat-icon">✈️</div>
+                    <span class="cat-name">旅游打卡</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 首屏 Hero 区域 -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>发现精彩短视频生活</h1>
+                <p>海量高清内容，涵盖搞笑、生活、游戏、音乐等多元领域。随时随地，打开手机即可享受高清流畅的在线观看体验。</p>
+                <div class="hero-actions">
+                    <a href="#" class="btn btn-primary">立即观看</a>
+                    <a href="#" class="btn btn-outline">浏览直播</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <strong>10亿+</strong>
+                        <span>日活用户</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>2000万+</strong>
+                        <span>日更创作者</span>
+                    </div>
+                    <div class="stat-item">
+                        <strong>1000万+</strong>
+                        <span>小时直播</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- 使用 picsum 占位图模拟视频封面墙 -->
+                <img src="https://picsum.photos/seed/hero1/600/400" alt="短视频推荐" style="width:100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- 视频内容区 -->
+    <main class="container">
+        <div class="section-header">
+            <h2 class="section-title">最新热门视频</h2>
+            <a href="#" class="view-all">查看更多 &rarr;</a>
+        </div>
+
+        <div class="video-grid">
+            <!-- 卡片 1 -->
+            <article class="video-card">
+                <div class="card-cover">
+                    <img src="https://picsum.photos/seed/v1/400/560" alt="搞笑视频封面">
+                    <div class="play-badge">▶</div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">周末宅家做饭，这味道绝了！</h3>
+                    <div class="card-meta">
+                        <div class="user-info">
+                            <img src="https://picsum.photos/seed/u1/50/50" class="user-avatar" alt="用户头像">
+                            <span>美食小达人</span>
+                        </div>
+                        <span>12.5w 播放</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 卡片 2 -->
+            <article class="video-card">
+                <div class="card-cover">
+                    <img src="https://picsum.photos/seed/v2/400/560" alt="搞笑视频封面">
+                    <div class="play-badge">▶</div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">猫咪迷惑行为大赏，笑出腹肌</h3>
+                    <div class="card-meta">
+                        <div class="user-info">
+                            <img src="https://picsum.photos/seed/u2/50/50" class="user-avatar" alt="用户头像">
+                            <span>喵星人基地</span>
+                        </div>
+                        <span>8.2w 播放</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 卡片 3 -->
+            <article class="video-card">
+                <div class="card-cover">
+                    <img src="https://picsum.photos/seed/v3/400/560" alt="搞笑视频封面">
+                    <div class="play-badge">▶</div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">城市夜景延时摄影，治愈你的疲惫</h3>
+                    <div class="card-meta">
+                        <div class="user-info">
+                            <img src="https://picsum.photos/seed/u3/50/50" class="user-avatar" alt="用户头像">
+                            <span>光影记录者</span>
+                        </div>
+                        <span>5.1w 播放</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 卡片 4 -->
+            <article class="video-card">
+                <div class="card-cover">
+                    <img src="https://picsum.photos/seed/v4/400/560" alt="搞笑视频封面">
+                    <div class="play-badge">▶</div>
+                </div>
+                <div class="card-info">
+                    <h3 class="card-title">极限运动挑战，心跳加速</h3>
+                    <div class="card-meta">
+                        <div class="user-info">
+                            <img src="https://picsum.photos/seed/u4/50/50" class="user-avatar" alt="用户头像">
+                            <span>运动狂人</span>
+                        </div>
+                        <span>20.3w 播放</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <!-- 直播板块 -->
+        <section class="live-section">
+            <div class="live-header">
+                <h2 class="live-title">
+                    <span class="live-badge">LIVE</span>
+                    正在热播
+                </h2>
+                <a href="#" class="view-all" style="color: white; text-decoration: underline;">进入直播广场</a>
+            </div>
+            <div class="live-grid">
+                <div class="live-card">
+                    <div class="live-img">
+                        <img src="https://picsum.photos/seed/l1/300/450" alt="直播封面">
+                        <div class="live-status">Live</div>
+                    </div>
+                    <div class="live-info">
+                        <div class="live-name">户外探险：寻找神秘森林</div>
+                    </div>
+                </div>
+                <div class="live-card">
+                    <div class="live-img">
+                        <img src="https://picsum.photos/seed/l2/300/450" alt="直播封面">
+                        <div class="live-status">Live</div>
+                    </div>
+                    <div class="live-info">
+                        <div class="live-name">深夜电台：听歌聊天</div>
+                    </div>
+                </div>
+                <div class="live-card">
+                    <div class="live-img">
+                        <img src="https://picsum.photos/seed/l3/300/450" alt="直播封面">
+                        <div class="live-status">Live</div>
+                    </div>
+                    <div class="live-info">
+                        <div class="live-name">王者荣耀：巅峰赛上分</div>
+                    </div>
+                </div>
+                <div class="live-card">
+                    <div class="live-img">
+                        <img src="https://picsum.photos/seed/l4/300/450" alt="直播封面">
+                        <div class="live-status">Live</div>
+                    </div>
+                    <div class="live-info">
+                        <div class="live-name">美妆教程：新手入门</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 FAQ -->
+        <section class="faq-section">
+            <div class="section-header">
+                <h2 class="section-title">常见问题解答</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item active">
+                    <div class="faq-question">如何使用网页版进行快手在线看？</div>
+                    <div class="faq-answer">您可以直接访问本站首页，通过分类导航浏览视频，或使用搜索框输入关键词查找特定内容。点击视频卡片即可开始播放。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">网页版支持下载视频吗？</div>
+                    <div class="faq-answer">本站提供在线流媒体播放服务，为了保护版权和用户体验，暂不支持直接下载视频文件。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">直播卡顿怎么办？</div>
+                    <div class="faq-answer">直播卡顿通常与网络环境有关。建议您检查网络连接，关闭后台占用带宽的程序，或尝试切换至更稳定的Wi-Fi环境。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何成为创作者发布内容？</div>
+                    <div class="faq-answer">您需要下载并安装官方快手APP，注册账号后，点击发布按钮即可上传您的视频作品。</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col" style="flex: 2; min-width: 250px;">
+                    <div class="logo" style="margin-bottom: 16px;">
+                        <span style="font-size: 20px;">快手在线看</span>
+                    </div>
+                    <p style="max-width: 300px; line-height: 1.8;">
+                        致力于为用户提供最流畅、高清的短视频在线观看体验。汇聚全网优质内容，让娱乐触手可及。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#">网站介绍</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">加入我们</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>内容分类</h4>
+                    <ul>
+                        <li><a href="#">搞笑娱乐</a></li>
+                        <li><a href="#">生活记录</a></li>
+                        <li><a href="#">游戏竞技</a></li>
+                        <li><a href="#">知识科普</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 快手在线看平台. All Rights Reserved. 本站仅为展示内容聚合，视频资源归原作者所有。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的 FAQ 切换逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', function() {
+                    // 关闭其他打开的项
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前项
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+  </html>
