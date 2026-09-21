@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="动漫周边产品大全，提供正版手办、同人本、潮玩、服装、文具等热门动漫衍生品推荐与购买指南。">
+    <meta name="keywords" content="动漫周边产品,手办,同人本,潮玩,动漫衍生品">
+    <title>动漫周边产品-正版手办、潮玩与同人本选购指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --dark-bg: #1e1e2e;
+            --card-bg: #2d2d44;
+            --text-main: #ffffff;
+            --text-sub: #b2bec3;
+            --border-radius: 12px;
+            --spacing: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* 布局容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing);
+        }
+
+        /* 头部导航 */
+        header {
+            background-color: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-sub);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .search-btn {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(108, 92, 231, 0.2) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--card-bg);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tag:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* 通用 Section */
+        section {
+            padding: 50px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--text-main);
+        }
+
+        .section-more {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        /* 分类网格 */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--card-bg);
+            padding: 25px 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* 商品卡片列表 */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #3d3d5c;
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-tag {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-meta {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .btn-buy:hover {
+            opacity: 0.9;
+        }
+
+        /* 购买指南 */
+        .guide-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+
+        .guide-sidebar {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: var(--border-radius);
+        }
+
+        .guide-sidebar h3 {
+            margin-bottom: 20px;
+            color: var(--text-main);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 10px;
+        }
+
+        .guide-list li {
+            margin-bottom: 15px;
+        }
+
+        .guide-list a {
+            color: var(--text-sub);
+            display: block;
+            padding: 8px;
+            border-radius: 6px;
+        }
+
+        .guide-list a:hover {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-main);
+        }
+
+        .guide-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+        }
+
+        .guide-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .guide-content p {
+            margin-bottom: 15px;
+            color: var(--text-sub);
+        }
+
+        /* 底部 */
+        footer {
+            background: #151521;
+            padding: 50px 0 20px;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            color: #636e72;
+            font-size: 0.85rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .nav-links {
+                display: none; /* 简化处理，移动端隐藏菜单 */
+            }
+            .guide-container {
+                grid-template-columns: 1fr;
+            }
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>◆</span> 周边工坊
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="active">首页</a>
+                <a href="#hot">热门推荐</a>
+                <a href="#guide">选购指南</a>
+                <a href="#categories">全部分类</a>
+                <a href="#about">关于我们</a>
+            </nav>
+            <button class="search-btn">🔍 搜索周边</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>探索你的<br><span>二次元梦想</span>周边</h1>
+                <p>汇聚全网正版动漫周边产品，从精致手办到热门同人本，打造属于你的独特二次元空间。</p>
+                <div class="hero-tags">
+                    <span class="tag">🔥 热门手办</span>
+                    <span class="tag">📚 精选同人本</span>
+                    <span class="tag">🎨 原创潮玩</span>
+                    <span class="tag">👕 限定服饰</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 热门推荐 -->
+        <section id="hot">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">本周热门周边</h2>
+                    <span class="section-more">查看更多 ></span>
+                </div>
+                <div class="product-grid">
+                    <!-- 商品 1 -->
+                    <article class="product-card">
+                        <img src="https://picsum.photos/seed/anime1/400/400" alt="赛博朋克风格手办" class="product-image">
+                        <div class="product-info">
+                            <span class="product-tag">手办模型</span>
+                            <h3 class="product-title">赛博朋克2077：银翼杀手 银翼杀手手办</h3>
+                            <div class="product-meta">
+                                <span class="product-price">¥ 599.00</span>
+                                <button class="btn-buy">立即购买</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 商品 2 -->
+                    <article class="product-card">
+                        <img src="https://picsum.photos/seed/anime2/400/400" alt="治愈系同人本" class="product-image">
+                        <div class="product-info">
+                            <span class="product-tag">同人本</span>
+                            <h3 class="product-title">夏日祭典·治愈系全彩同人画集</h3>
+                            <div class="product-meta">
+                                <span class="product-price">¥ 68.00</span>
+                                <button class="btn-buy">立即购买</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 商品 3 -->
+                    <article class="product-card">
+                        <img src="https://picsum.photos/seed/anime3/400/400" alt="毛绒公仔" class="product-image">
+                        <div class="product-info">
+                            <span class="product-tag">毛绒公仔</span>
+                            <h3 class="product-title">龙猫官方正版抱枕玩偶 45cm</h3>
+                            <div class="product-meta">
+                                <span class="product-price">¥ 129.00</span>
+                                <button class="btn-buy">立即购买</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- 商品 4 -->
+                    <article class="product-card">
+                        <img src="https://picsum.photos/seed/anime4/400/400" alt="限定徽章" class="product-image">
+                        <div class="product-info">
+                            <span class="product-tag">徽章挂件</span>
+                            <h3 class="product-title">经典动漫角色金属徽章套装（5入）</h3>
+                            <div class="product-meta">
+                                <span class="product-price">¥ 45.00</span>
+                                <button class="btn-buy">立即购买</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分类浏览 -->
+        <section id="categories" style="background-color: #252538;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">全部分类浏览</h2>
+                    <span class="section-more">发现更多 ></span>
+                </div>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <span class="category-icon">🤖</span>
+                        <span class="category-name">手办模型</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">📚</span>
+                        <span class="category-name">同人本/漫画</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">👕</span>
+                        <span class="category-name">动漫服饰</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🎨</span>
+                        <span class="category-name">潮玩盲盒</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">✏️</span>
+                        <span class="category-name">文具周边</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🏠</span>
+                        <span class="category-name">生活家居</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🎮</span>
+                        <span class="category-name">游戏道具</span>
+                    </div>
+                    <div class="category-card">
+                        <span class="category-icon">🎧</span>
+                        <span class="category-name">音频设备</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 选购指南 -->
+        <section id="guide">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">动漫周边选购指南</h2>
+                    <span class="section-more">了解更多 ></span>
+                </div>
+                <div class="guide-container">
+                    <aside class="guide-sidebar">
+                        <h3>快速导航</h3>
+                        <ul class="guide-list">
+                            <li><a href="#guide-1">如何辨别正版手办？</a></li>
+                            <li><a href="#guide-2">同人本的购买注意事项</a></li>
+                            <li><a href="#guide-3">潮玩盲盒的选购技巧</a></li>
+                            <li><a href="#guide-4">周边物流与售后</a></li>
+                        </ul>
+                    </aside>
+                    <article class="guide-content" id="guide-1">
+                        <h3>如何辨别正版手办？</h3>
+                        <p>购买手办时，认准官方授权标识至关重要。正版手办通常会在包装上印有“正版授权”字样，并有防伪码可供查询。此外，观察做工细节，正版手办涂装精细，连接处处理平滑，材质通常为PVC或ABS合金，质感厚重。</p>
+                    </article>
+                    <article class="guide-content" id="guide-2">
+                        <h3>同人本的购买注意事项</h3>
+                        <p>同人本属于非商业性质的创作，购买时请注意作品的官方属性。同人本通常由作者自行设计印刷，封面和内页的印刷质量参差不齐。购买前建议查看作者简介及作品介绍，支持原创作者的同时，也要注意周边的尺码和材质是否符合预期。</p>
+                    </article>
+                    <article class="guide-content" id="guide-3">
+                        <h3>潮玩盲盒的选购技巧</h3>
+                        <p>盲盒具有随机性，购买前请明确自己是否接受“隐藏款”或“重复款”的概率。建议在官方渠道购买，并保留购买凭证。对于收藏者来说，可以关注特定系列的出货数量和市场价格走势，理性消费，避免过度囤货。</p>
+                    </article>
+                    <article class="guide-content" id="guide-4">
+                        <h3>周边物流与售后</h3>
+                        <p>由于动漫周边多为易碎品，物流运输过程中极易发生损坏。在下单前请确认商家是否提供保价服务。收到货后请第一时间开箱验货，如有破损需立即拍照联系客服。正规商家通常提供7天无理由退换货服务。</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于周边工坊</h4>
+                    <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 10px;">
+                        专注为二次元爱好者提供正版、优质的动漫周边产品。我们致力于连接创作者与消费者，让每一个热爱都能找到归属。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>购物指南</h4>
+                    <ul>
+                        <li><a href="#">购物流程</a></li>
+                        <li><a href="#">支付方式</a></li>
+                        <li><a href="#">配送说明</a></li>
+                        <li><a href="#">退换货政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>客户服务</h4>
+                    <ul>
+                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#">联系客服</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">微博动态</a></li>
+                        <li><a href="#">官方社群</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 周边工坊 版权所有 | 本站所有动漫周边产品图片仅供展示，非实物拍摄
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
